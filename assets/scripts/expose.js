@@ -29,8 +29,24 @@ function init() {
     }
   });
 
-  let playButton = audio.previousElementSibling;
+  const playButton = audio.previousElementSibling;
   playButton.addEventListener('click', (event) => {
     audio.play();
+  });
+
+  const volumeControl = document.getElementById("volume");
+  volumeControl.addEventListener('change', (event) => {
+    const picture = volumeControl.nextElementSibling
+    const volume = volumeControl.value;
+    if (volume < 1) {
+      picture.src = 'assets/icons/volume-level-0.svg';
+    } else if (volume < 33) {
+      picture.src = 'assets/icons/volume-level-1.svg';
+    } else if (volume < 67) {
+      picture.src = 'assets/icons/volume-level-2.svg';
+    } else {
+      picture.src = 'assets/icons/volume-level-3.svg';
+    }
+    audio.volume = volume / volumeControl.max
   });
 }
