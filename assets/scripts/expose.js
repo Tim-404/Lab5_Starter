@@ -8,7 +8,7 @@ function init() {
   const img = selectBar.previousElementSibling;
   const audio = document.getElementsByClassName("hidden")[0]
   selectBar.addEventListener('change', (event) => {
-    const list = event.target.options;
+    const list = selectBar.options;
     switch (list[list.selectedIndex].value) {
       case 'select':
         img.src = 'assets/images/no-image.png'
@@ -32,6 +32,10 @@ function init() {
   const playButton = audio.previousElementSibling;
   playButton.addEventListener('click', (event) => {
     audio.play();
+    if (selectBar.options.selectedIndex === 3) {
+      const anim = new JSConfetti();
+      anim.addConfetti();
+    }
   });
 
   const volumeControl = document.getElementById("volume");
